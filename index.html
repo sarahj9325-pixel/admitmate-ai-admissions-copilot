@@ -10,12 +10,15 @@
 
 /* v1.2: actionable guidance and chatbot navigation */
 .guidance{margin-top:14px;padding-top:12px;border-top:1px solid #e2d7b7}.guidance h3{font-size:15px;margin:8px 0}.guidance ol{padding-left:22px;margin:8px 0}.guidance li{margin:8px 0}.guidance .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.guidance .actions button{font-size:13px}.guidance small{display:block;color:#6b5a34;margin-top:12px}.chat-action{align-self:flex-start;border:1px solid #cbd5f7;background:#edf1ff;color:#2848b5;border-radius:9px;padding:9px 12px;cursor:pointer;font:inherit;font-size:12px;font-weight:700}.chat-action:hover{background:#dfe7ff}
+
+/* v1.3 University Explorer */
+.explorer{margin-top:20px}.explorer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.explorer-grid .field{min-width:0}.explorer-results{margin-top:18px}.explorer-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}.uni-card{border:1px solid var(--line);border-radius:13px;padding:15px;background:#f9fbff}.uni-card h3{font-size:15px;margin:0 0 6px}.uni-card p{font-size:12px;color:var(--muted);margin:5px 0}.uni-card a,.rank-links a{color:#2448bc;font-size:13px;font-weight:700}.rank-links{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}.explorer-notice{font-size:12px;color:#665527;background:#fff9e9;border:1px solid #f0e2b8;padding:11px;border-radius:10px;margin-top:12px}.uni-empty{background:#f7f9fd;border:1px solid var(--line);padding:15px;border-radius:12px}.explorer .form-actions{flex-wrap:wrap}@media(max-width:700px){.explorer-grid,.explorer-cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="top"><div class="brand"><div class="logo">A</div>AdmitMate</div><div class="tag">DEMO · Fictional university data</div></header>
-  <section class="hero"><div><div class="eyebrow">Your admissions companion</div><h1>A clearer path to your next chapter.</h1><p>Check a sample programme's entry requirements, organise your application documents and get answers to common admissions questions.</p></div><div class="hero-bubble">🎓</div></section>
+  <header class="top"><div class="brand"><div class="logo">A</div>AdmitMate</div><div class="tag">DEMO · Fictional eligibility data</div></header>
+  <section class="hero"><div><div class="eyebrow">Your admissions companion</div><h1>A clearer path to your next chapter.</h1><p>Check fictional entry criteria, plan application documents, draft an SOP and explore study destinations.</p></div><div class="hero-bubble">🎓</div></section>
   <main class="layout">
     <section class="card"><div class="section-label">01 · Eligibility check</div><h2>Let's understand your profile</h2><p class="sub">Enter a few details to compare your profile with our fictional programme requirements.</p>
       <div class="field-grid">
@@ -37,13 +40,27 @@
     </div>
   </main>
 
-  <section class="card sop" id="sop-builder"><div class="section-label">04 · SOP Builder · v1.2</div><h2>Write your Statement of Purpose</h2><p class="sub">Choose how to share your story. Both paths create an editable starting draft. This version uses templates, not generative AI.</p>
+  <section class="card sop" id="sop-builder"><div class="section-label">04 · SOP Builder · v1.3</div><h2>Write your Statement of Purpose</h2><p class="sub">Choose how to share your story. Both paths create an editable starting draft. This version uses templates, not generative AI.</p>
   <div class="mode-row" role="group" aria-label="Choose SOP writing method"><button class="btn secondary" id="modeGuided" aria-pressed="true">💬 Guided conversation</button><button class="btn secondary" id="modeForm" aria-pressed="false">📝 Structured form</button></div>
   <div id="guidedPanel"><div class="sop-question"><div class="sop-status" id="stepLabel">Question 1 of 6</div><h3 id="stepQuestion">What programme are you applying for?</h3><p class="sub" id="stepHelp">Include the degree and subject.</p><div class="field"><label for="guidedAnswer">Your answer</label><textarea id="guidedAnswer" placeholder="Write your answer here..."></textarea></div><div class="form-actions"><button class="btn secondary" id="backStep" type="button">Back</button><button class="btn" id="nextStep" type="button">Next</button></div></div></div>
   <div id="formPanel" class="sop-hidden"><div class="sop-fields" id="sopFields"></div><div class="form-actions"><button class="btn" id="formGenerate" type="button">Create draft</button></div></div>
   <div id="draftPanel" class="sop-hidden" style="margin-top:20px"><h3>Your editable SOP draft</h3><p class="sub">This is a starting outline, not a submission-ready SOP. Edit it to sound like you, verify every statement, and check the university's AI-writing policy.</p><div class="field"><label for="sopDraft">Draft text</label><textarea id="sopDraft" class="sop-output"></textarea></div><div class="form-actions"><button class="btn secondary" id="copySop" type="button">Copy draft</button><button class="btn secondary" id="downloadSop" type="button">Download .txt</button><span class="sop-status" id="copyStatus" aria-live="polite"></span></div></div>
   <p class="chat-note">Privacy: answers stay in this browser session and are not sent to a server by this demo. Don't enter sensitive personal information. Nothing is saved after refreshing.</p></section>
-  <div class="footer">AdmitMate · Portfolio MVP · All university and programme requirements are fictional and for demonstration only.</div>
+
+  <section class="card explorer" id="university-explorer">
+    <div class="section-label">05 · University Explorer · v1.3</div>
+    <h2>Discover where to study</h2>
+    <p class="sub">Explore a small selection of universities, compare study destinations and consult official ranking sources. This is a research starting point, not an admission recommendation.</p>
+    <div class="explorer-grid">
+      <div class="field"><label for="studyDestination">Preferred study destination</label><select id="studyDestination"><option value="any">I'm not sure — show all countries</option><option value="United States">United States</option><option value="United Kingdom">United Kingdom</option><option value="Canada">Canada</option><option value="Australia">Australia</option><option value="Germany">Germany</option></select></div>
+      <div class="field"><label for="studySubject">Area of interest</label><select id="studySubject"><option value="Business Analytics">Business Analytics</option><option value="Artificial Intelligence">Artificial Intelligence</option><option value="Computer Science">Computer Science</option><option value="Business & Management">Business & Management</option></select></div>
+      <div class="field"><label for="studyPriority">What matters most?</label><select id="studyPriority"><option value="fit">Entry requirements and programme fit</option><option value="ranking">University rankings and reputation</option><option value="cost">Tuition and living costs</option><option value="career">Career opportunities</option></select></div>
+    </div>
+    <div class="form-actions"><button class="btn" type="button" id="exploreUniversities">Explore universities</button><span class="hint">Curated examples only · No live ranking or admissions data</span></div>
+    <div class="explorer-results" id="explorerResults" aria-live="polite"></div>
+  </section>
+
+  <div class="footer">AdmitMate · Portfolio MVP · Eligibility thresholds are fictional; university examples are real institutions, not verified programme matches.</div>
 </div>
 <script>
 const programmes={business:{name:'MSc Business Analytics',min:6.5,degree:'bachelor',note:'A recognised bachelor’s degree and a minimum GPA of 6.5/10 are sample requirements.'},computing:{name:'MSc Computer Science',min:7,degree:'bachelor',note:'A recognised bachelor’s degree in a computing-related field and a minimum GPA of 7.0/10 are sample requirements.'},marketing:{name:'MA Digital Marketing',min:6,degree:'bachelor',note:'A recognised bachelor’s degree and a minimum GPA of 6.0/10 are sample requirements.'}};
@@ -80,6 +97,7 @@ $('assess').addEventListener('click',()=>{
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function updateProgress(){const checks=[...document.querySelectorAll('#checklist input')];const done=checks.filter(c=>c.checked).length;$('progressText').textContent=`${done} / ${checks.length}`;$('progressFill').style.width=`${done/checks.length*100}%`;checks.forEach(c=>c.parentElement.classList.toggle('done',c.checked));}document.querySelectorAll('#checklist input').forEach(c=>c.addEventListener('change',updateProgress));
 const answers=[
+ [/\b(lor|lors|letter(s)? of recommendation|recommendation letter(s)?|reference letter(s)?|referee(s)?|recommender(s)?)\b/i,'A Letter of Recommendation (LOR) is typically written by a professor, academic supervisor, or professional manager who knows your work. Universities may request one, two, three, or another number of letters, depending on the programme. Check the official application instructions for the required number, accepted referees, submission method and deadline. Ask your referees early and share your CV, achievements and programme details. Do not write a letter pretending to be your referee.'],
  [/\b(sop|statement of purpose|personal statement)\b/i,'A Statement of Purpose (SOP) is usually written by you, the applicant. It explains your academic background, motivation, relevant experience and goals. Check your university’s own instructions and AI-use policy. You can draft an editable starting version using the SOP Builder below.',true],
  [/document|paper|checklist/i,'The sample checklist includes academic transcripts, your degree certificate, a statement of purpose, an English language test result and letters of recommendation. Requirements vary by programme.'],
  [/eligible|eligibility|gpa|grade|marks|low cgpa/i,'Use the eligibility checker to compare your profile with fictional requirements. If your GPA is below a sample threshold, the results now show practical next steps. Real university policies must be verified.'],
@@ -124,5 +142,34 @@ const paragraphs=[
 $('copySop').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('sopDraft').value);$('copyStatus').textContent='Copied!';}catch(e){$('sopDraft').focus();$('sopDraft').select();$('copyStatus').textContent='Select and copy the highlighted text.';}});
 $('downloadSop').addEventListener('click',()=>{const blob=new Blob([$('sopDraft').value],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='AdmitMate-SOP-Draft.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 renderSopStep();
+
+// v1.3: curated discovery links. These are NOT verified programme matches or ranking positions.
+const universityExamples=[
+ {name:'University of Toronto',country:'Canada',url:'https://www.utoronto.ca/'},
+ {name:'University of British Columbia',country:'Canada',url:'https://www.ubc.ca/'},
+ {name:'University of Edinburgh',country:'United Kingdom',url:'https://www.ed.ac.uk/'},
+ {name:'University of Manchester',country:'United Kingdom',url:'https://www.manchester.ac.uk/'},
+ {name:'University of Michigan',country:'United States',url:'https://umich.edu/'},
+ {name:'University of Washington',country:'United States',url:'https://www.washington.edu/'},
+ {name:'University of Melbourne',country:'Australia',url:'https://www.unimelb.edu.au/'},
+ {name:'Monash University',country:'Australia',url:'https://www.monash.edu/'},
+ {name:'Technical University of Munich',country:'Germany',url:'https://www.tum.de/en/'},
+ {name:'Heidelberg University',country:'Germany',url:'https://www.uni-heidelberg.de/en'}
+];
+const explorationGuidance={
+ fit:'Check the university’s official programme catalogue for your subject, then verify prerequisites, GPA policies, language tests and deadlines.',
+ ranking:'Use QS and THE official tables, and compare subject rankings rather than relying only on overall positions.',
+ cost:'Look up official tuition, scholarship eligibility and estimated living expenses. Costs depend on programme and student status.',
+ career:'Explore programme career services, internships, local work authorization rules and graduate outcomes from official sources.'
+};
+$('exploreUniversities').addEventListener('click',()=>{
+ const destination=$('studyDestination').value,subject=$('studySubject').value,priority=$('studyPriority').value;
+ const filtered=universityExamples.filter(u=>destination==='any'||u.country===destination);
+ const heading=destination==='any'?'Examples across five study destinations':'Examples in '+destination;
+ const cards=filtered.map(u=>`<article class="uni-card"><h3>${escapeHtml(u.name)}</h3><p>${escapeHtml(u.country)}</p><p>Explore this university’s official site and search for ${escapeHtml(subject)}. Programme availability and eligibility have not been verified.</p><a href="${u.url}" target="_blank" rel="noopener noreferrer">Visit official university website ↗</a></article>`).join('');
+ $('explorerResults').innerHTML=`<h3>${escapeHtml(heading)}</h3><p>${escapeHtml(explorationGuidance[priority])}</p><div class="rank-links"><a href="https://www.topuniversities.com/world-university-rankings" target="_blank" rel="noopener noreferrer">QS world rankings ↗</a><a href="https://www.topuniversities.com/subject-rankings" target="_blank" rel="noopener noreferrer">QS subject rankings ↗</a><a href="https://www.timeshighereducation.com/world-university-rankings" target="_blank" rel="noopener noreferrer">THE world rankings ↗</a></div><div class="explorer-cards">${cards}</div><p class="explorer-notice">These are illustrative institutions, not personalized recommendations. No ranking positions, programme availability, GPA eligibility, tuition fees or admission chances are asserted. Check the official university programme page and the ranking publisher for current information.</p>`;
+ $('explorerResults').scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+
 </script>
 </body></html>
