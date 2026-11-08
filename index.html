@@ -4,59 +4,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AdmitMate | Study Abroad Planner</title>
+<title>AdmitMate | Study Abroad Planner v2.1</title>
 <style>
-:root{--navy:#172b4d;--blue:#4868e8;--bg:#f5f7fc;--line:#e1e6f0;--muted:#65738a;--green:#15846c}
+:root{
+  --blue:#4868e8;--navy:#172b4d;--bg:#f5f7fc;
+  --line:#e1e6f0;--muted:#65738a
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.5}
-header{background:white;border-bottom:1px solid var(--line);padding:16px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+body{margin:0;background:var(--bg);color:var(--navy);
+  font-family:Segoe UI,Arial,sans-serif;line-height:1.5}
+header{background:white;padding:18px 5%;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .logo{font-size:23px;font-weight:800;color:var(--blue)}
-.tag{font-size:12px;background:#eaf0ff;color:var(--blue);padding:5px 10px;border-radius:30px}
-nav{display:flex;gap:7px;overflow-x:auto;padding:13px 5%;background:white;border-bottom:1px solid var(--line)}
-nav button{white-space:nowrap;background:transparent;color:var(--navy);border:0;padding:10px 13px;border-radius:9px;cursor:pointer}
+.tag{font-size:12px;background:#eaf0ff;padding:5px 9px;border-radius:20px}
+nav{display:flex;overflow-x:auto;gap:5px;background:white;
+  border-bottom:1px solid var(--line);padding:12px 5%}
+nav button{white-space:nowrap;border:0;background:transparent;
+  padding:11px;border-radius:9px;color:var(--navy);cursor:pointer}
 nav button.active{background:var(--blue);color:white}
-main{max-width:1100px;margin:auto;padding:28px 18px 60px}
-.hero{background:linear-gradient(115deg,#253d7c,#5877ed);border-radius:20px;padding:30px;color:white;margin-bottom:23px}
-.hero h1{font-size:clamp(25px,4vw,37px);margin:0 0 8px}
-.hero p{margin:0;opacity:.92}
-.panel{background:white;border:1px solid var(--line);border-radius:15px;padding:22px;margin-bottom:18px}
-.panel h2{margin:0 0 12px;font-size:21px}
-.panel h3{margin:0 0 8px;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-label{display:block;font-weight:600;font-size:13px;margin:13px 0 5px}
-input,select,textarea{width:100%;border:1px solid #cfd7e5;border-radius:9px;padding:11px;font:inherit;background:white;color:var(--navy)}
+main{max-width:1100px;margin:auto;padding:25px 16px 60px}
+.hero{background:linear-gradient(115deg,#253d7c,#5877ed);
+  color:white;border-radius:18px;padding:28px;margin-bottom:20px}
+.hero h1{margin:0;font-size:clamp(24px,4vw,36px)}
+.hero p{margin:8px 0 0}
+.panel{background:white;border:1px solid var(--line);
+  border-radius:14px;padding:22px;margin-bottom:17px}
+.panel h2{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:12px;
+  padding:16px;background:white}
+.card h3{margin:0 0 8px}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cfd7e5;
+  border-radius:9px;font:inherit;color:var(--navy);background:white}
 textarea{min-height:100px;resize:vertical}
 button{font:inherit;cursor:pointer}
-.primary,.secondary,.danger{padding:10px 16px;border-radius:9px;font-weight:600;margin:8px 7px 0 0}
-.primary{background:var(--blue);border:1px solid var(--blue);color:white}
-.secondary{background:white;border:1px solid #bdc9e1;color:var(--navy)}
-.danger{background:white;border:1px solid #efb4b4;color:#a52e2e}
+.primary,.secondary,.danger{border-radius:9px;padding:10px 15px;
+  margin:9px 6px 0 0;font-weight:600}
+.primary{background:var(--blue);color:white;border:1px solid var(--blue)}
+.secondary{background:white;color:var(--navy);border:1px solid #bdc9e1}
+.danger{background:white;color:#a52e2e;border:1px solid #efb4b4}
 .muted{color:var(--muted);font-size:14px}
-.small{font-size:12px}
-.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:white}
-.card p{margin:6px 0}
-.stat{font-size:28px;font-weight:800;color:var(--blue)}
-.pill{display:inline-block;background:#eef2ff;color:#435bb0;padding:4px 9px;border-radius:20px;font-size:12px;margin:3px}
+.stat{font-size:29px;font-weight:800;color:var(--blue)}
 .section{display:none}
 .section.active{display:block}
-.country{cursor:pointer;transition:.15s}
-.country:hover{border-color:var(--blue);transform:translateY(-2px)}
+.country{cursor:pointer}
 .country.selected{border:2px solid var(--blue);background:#f1f4ff}
-.flag{font-size:32px}
-.task{display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);padding:12px 0}
-.task input{width:auto;margin-top:6px}
+.flag{font-size:30px}
+.task{display:flex;gap:10px;align-items:center;
+  padding:11px 0;border-bottom:1px solid var(--line)}
+.task input{width:auto}
 .task.done span{text-decoration:line-through;color:var(--muted)}
-.notice{border-left:4px solid #e8ad43;background:#fff8e9;padding:13px;border-radius:7px;font-size:13px;margin:15px 0}
-.success{color:var(--green)}
-.empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px}
+.notice{background:#fff8e9;border-left:4px solid #e8ad43;
+  border-radius:7px;padding:13px;font-size:13px;margin:14px 0}
+.empty{border:1px dashed var(--line);padding:18px;
+  text-align:center;color:var(--muted)}
+.pill{background:#eef2ff;color:#435bb0;border-radius:20px;
+  padding:4px 9px;font-size:12px}
 a{color:var(--blue);word-break:break-word}
 footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
-@media(max-width:600px){header{padding:13px 18px}.panel{padding:17px}.hero{padding:23px}nav{padding:10px}}
+.fab{position:fixed;bottom:20px;right:20px;width:60px;height:60px;
+  border:0;border-radius:50%;background:var(--blue);color:white;
+  font-size:27px;box-shadow:0 6px 24px #263f7b55;z-index:20}
+.chat{display:none;position:fixed;right:18px;bottom:90px;
+  width:min(380px,calc(100vw - 36px));
+  height:min(540px,calc(100dvh - 115px));
+  background:white;border:1px solid var(--line);
+  border-radius:16px;box-shadow:0 12px 40px #172b4d33;
+  z-index:20;overflow:hidden;flex-direction:column}
+.chat.open{display:flex}
+.chat-head{background:var(--blue);color:white;padding:14px;
+  display:flex;justify-content:space-between}
+.chat-head button{border:0;background:none;color:white;font-size:23px}
+.messages{flex:1;overflow:auto;padding:14px;background:#f8faff}
+.bubble{background:white;border:1px solid var(--line);
+  border-radius:12px;padding:10px;margin:9px 0;
+  font-size:14px;white-space:pre-wrap;max-width:90%}
+.bubble.me{background:#e2eaff;margin-left:auto}
+.chips{display:flex;gap:5px;flex-wrap:wrap;padding:8px}
+.chips button{background:#eef2ff;border:1px solid var(--line);
+  border-radius:20px;padding:6px;font-size:12px}
+.chat-form{display:flex;gap:6px;padding:10px}
+.chat-form input{flex:1;min-width:0}
+.chat-form button{background:var(--blue);color:white;
+  border:0;border-radius:8px;padding:9px}
+@media(max-width:600px){
+  header{padding:14px}
+  .panel{padding:16px}
+  .hero{padding:22px}
+}
 </style>
 </head>
 <body>
+
 <header>
-  <div class="logo">🎓 AdmitMate <span class="tag">2.0 BETA</span></div>
+  <div class="logo">🎓 AdmitMate <span class="tag">2.1 BETA</span></div>
   <span class="muted">Your study abroad journey, organized.</span>
 </header>
 
@@ -65,445 +108,793 @@ footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}
   <button data-tab="profile">👤 Profile</button>
   <button data-tab="countries">🌏 Countries</button>
   <button data-tab="universities">🎓 Universities</button>
+  <button data-tab="rankings">🏆 Rankings</button>
   <button data-tab="scholarships">💰 Scholarships</button>
+  <button data-tab="tests">📝 Tests</button>
   <button data-tab="sop">✍️ SOP Builder</button>
   <button data-tab="applications">📋 Applications</button>
 </nav>
 
 <main>
 <div class="hero">
-<h1 id="greeting">Your future starts with a plan.</h1>
-<p>Explore destinations, compare opportunities, and organize your next steps in one place.</p>
+  <h1 id="greeting">Your future starts with a plan.</h1>
+  <p>Explore destinations, compare opportunities, and organize your next steps.</p>
 </div>
 
 <section id="dashboard" class="section active">
-<div class="grid">
- <div class="panel"><div class="muted">Selected countries</div><div class="stat" id="countryCount">0</div></div>
- <div class="panel"><div class="muted">Shortlisted universities</div><div class="stat" id="universityCount">0</div></div>
- <div class="panel"><div class="muted">Scholarships saved</div><div class="stat" id="scholarshipCount">0</div></div>
- <div class="panel"><div class="muted">Tasks completed</div><div class="stat" id="taskCount">0/0</div></div>
-</div>
-<div class="panel">
-<h2>My Study Abroad Plan</h2>
-<p class="muted">Your personalized workspace starts with your profile. You can add and complete tasks as you go.</p>
-<div id="taskList"></div>
-<label for="newTask">Add your next step</label>
-<div class="grid">
-<input id="newTask" placeholder="e.g. Research English language requirements">
-<button class="primary" onclick="addTask()">Add task</button>
-</div>
-<button class="secondary" onclick="exportPlan()">⬇ Export my plan</button>
-</div>
-<div class="panel">
-<h2>Where am I in my journey?</h2>
-<div id="journeySummary" class="muted"></div>
-<button class="primary" onclick="showTab('profile')">Update my profile</button>
-</div>
+  <div class="grid">
+    <div class="panel"><div class="muted">Selected countries</div>
+      <div class="stat" id="countryCount">0</div></div>
+    <div class="panel"><div class="muted">Shortlisted universities</div>
+      <div class="stat" id="universityCount">0</div></div>
+    <div class="panel"><div class="muted">Scholarships saved</div>
+      <div class="stat" id="scholarshipCount">0</div></div>
+    <div class="panel"><div class="muted">Tasks completed</div>
+      <div class="stat" id="taskCount">0/0</div></div>
+  </div>
+  <div class="panel">
+    <h2>My Study Abroad Plan</h2>
+    <p class="muted">Complete tasks as you progress.</p>
+    <div id="taskList"></div>
+    <label>Add your next step</label>
+    <div class="grid">
+      <input id="newTask" placeholder="e.g. Research language requirements">
+      <button class="primary" onclick="addTask()">Add task</button>
+    </div>
+    <button class="secondary" onclick="exportPlan()">⬇ Export my plan</button>
+  </div>
+  <div class="panel">
+    <h2>Where am I in my journey?</h2>
+    <p id="journeySummary" class="muted"></p>
+    <button class="primary" onclick="showTab('profile')">Update my profile</button>
+  </div>
 </section>
 
 <section id="profile" class="section">
-<div class="panel">
-<h2>Let's get to know you</h2>
-<p class="muted">Your answers help organize your research. They are saved only in this browser.</p>
-<div class="grid">
-<div><label>Name or nickname</label><input id="studentName" placeholder="What should we call you?"></div>
-<div><label>Preferred app language</label><select id="language"></select></div>
-<div><label>Highest qualification</label>
-<select id="qualification">
-<option value="">Select qualification</option>
-<option>Higher secondary</option><option>Diploma</option>
-<option>Bachelor's degree</option><option>Master's degree</option>
-<option>Other</option>
-</select></div>
-<div><label>Intended study level</label>
-<select id="studyLevel"><option value="">Not decided</option><option>Undergraduate</option><option>Postgraduate</option><option>Doctoral</option><option>Other</option></select></div>
-<div><label>Area of interest</label><input id="subject" placeholder="e.g. Computer Science"></div>
-<div><label>Approximate total budget (INR)</label><input id="budget" type="number" min="0" placeholder="e.g. 2500000"></div>
-<div><label>Preferred university (optional)</label><input id="preferredUniversity" placeholder="e.g. University of Tokyo"></div>
-<div><label>Main goal</label>
-<select id="goal">
-<option value="">Still exploring</option>
-<option>International qualification</option>
-<option>Career opportunities abroad</option>
-<option>Research opportunities</option>
-<option>Explore long-term settlement pathways</option>
-<option>Other</option>
-</select></div>
-</div>
-<button class="primary" onclick="saveProfile()">Save profile</button>
-<p id="profileStatus" class="success"></p>
-<div class="notice">Language preferences are stored now, but this beta's interface and guidance are currently in English. Full translations are planned for future releases.</div>
-</div>
+  <div class="panel">
+    <h2>Let's get to know you</h2>
+    <p class="muted">Your information stays in this browser.</p>
+    <div class="grid">
+      <div><label>Name or nickname</label><input id="studentName"></div>
+      <div><label>Preferred app language</label><select id="language"></select></div>
+      <div><label>Highest qualification</label>
+        <select id="qualification">
+          <option value="">Select qualification</option>
+          <option>Higher secondary</option><option>Diploma</option>
+          <option>Bachelor's degree</option><option>Master's degree</option>
+          <option>Other</option>
+        </select></div>
+      <div><label>Intended study level</label>
+        <select id="studyLevel">
+          <option value="">Not decided</option>
+          <option>Undergraduate</option><option>Postgraduate</option>
+          <option>Doctoral</option><option>Other</option>
+        </select></div>
+      <div><label>Area of interest</label>
+        <input id="subject" placeholder="e.g. Computer Science"></div>
+      <div><label>Approximate total budget (INR)</label>
+        <input id="budget" type="number" min="0"></div>
+      <div><label>Preferred university</label><input id="preferredUniversity"></div>
+      <div><label>Main goal</label>
+        <select id="goal">
+          <option value="">Still exploring</option>
+          <option>International qualification</option>
+          <option>Career opportunities abroad</option>
+          <option>Research opportunities</option>
+          <option>Explore long-term settlement pathways</option>
+          <option>Other</option>
+        </select></div>
+    </div>
+    <button class="primary" onclick="saveProfile()">Save profile</button>
+    <p id="profileStatus" class="muted"></p>
+    <div class="notice">Language preference is saved. Full interface translations are not yet available.</div>
+  </div>
 </section>
 
 <section id="countries" class="section">
-<div class="panel">
-<h2>Explore study destinations</h2>
-<p class="muted">Choose countries you want to research. Select more than one to build your comparison.</p>
-<div id="countryGrid" class="grid"></div>
-</div>
-<div class="panel">
-<h2>Compare selected countries</h2>
-<div id="comparison"></div>
-</div>
+  <div class="panel">
+    <h2>Explore Study Destinations</h2>
+    <p class="muted">Select more than one destination.</p>
+    <div id="countryGrid" class="grid"></div>
+  </div>
+  <div class="panel">
+    <h2>Compare Selected Countries</h2>
+    <div id="comparison"></div>
+  </div>
 </section>
 
 <section id="universities" class="section">
-<div class="panel">
-<h2>My University Explorer</h2>
-<p class="muted">Create a shortlist of universities you are interested in. This is a research organizer, not an admissions recommendation engine.</p>
-<div class="grid">
-<div><label>University name</label><input id="uniName" placeholder="e.g. Kyoto University"></div>
-<div><label>Country</label><select id="uniCountry"></select></div>
-<div><label>Programme</label><input id="uniProgram" placeholder="e.g. MSc Data Science"></div>
-<div><label>Official programme URL (optional)</label><input id="uniLink" type="url" placeholder="https://..."></div>
-</div>
-<button class="primary" onclick="addUniversity()">Save university</button>
-</div>
-<div class="panel"><h2>My shortlist</h2><div id="universityList"></div></div>
+  <div class="panel">
+    <h2>My University Explorer</h2>
+    <p class="muted">Build your shortlist using official university sources.</p>
+    <div class="grid">
+      <div><label>University name</label>
+        <input id="uniName" placeholder="e.g. Kyoto University"></div>
+      <div><label>Country</label><select id="uniCountry"></select></div>
+      <div><label>Programme</label>
+        <input id="uniProgram" placeholder="e.g. MSc Data Science"></div>
+      <div><label>Official programme URL</label>
+        <input id="uniLink" type="url" placeholder="https://..."></div>
+    </div>
+    <button class="primary" onclick="addUniversity()">Save university</button>
+  </div>
+  <div class="panel"><h2>My Shortlist</h2><div id="universityList"></div></div>
+</section>
+
+<section id="rankings" class="section">
+  <div class="panel">
+    <h2>Explore University Rankings 🏆</h2>
+    <p class="muted">Compare universities using official ranking providers.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>QS World University Rankings</h3>
+        <p>Explore global and subject-specific rankings.</p>
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://www.topuniversities.com/world-university-rankings">
+          Explore QS rankings ↗
+        </a>
+      </div>
+      <div class="card">
+        <h3>Times Higher Education</h3>
+        <p>Explore world university rankings and methodology.</p>
+        <a target="_blank" rel="noopener noreferrer"
+          href="https://www.timeshighereducation.com/world-university-rankings/latest/world-ranking">
+          Explore THE rankings ↗
+        </a>
+      </div>
+    </div>
+    <div class="notice">
+      Rankings are not the same as programme suitability.
+      Check tuition, scholarships, subject strength,
+      language requirements and career opportunities.
+      Rankings are linked rather than reproduced.
+    </div>
+    <button class="primary" onclick="showTab('universities')">
+      Open my university shortlist
+    </button>
+  </div>
 </section>
 
 <section id="scholarships" class="section">
-<div class="panel">
-<h2>Scholarship Tracker</h2>
-<p class="muted">Record scholarships you find through official university and scholarship websites.</p>
-<div class="grid">
-<div><label>Scholarship name</label><input id="schName" placeholder="Scholarship title"></div>
-<div><label>Country</label><select id="schCountry"></select></div>
-<div><label>Deadline (if known)</label><input id="schDeadline" type="date"></div>
-<div><label>Official scholarship URL (optional)</label><input id="schLink" type="url" placeholder="https://..."></div>
-</div>
-<button class="primary" onclick="addScholarship()">Save scholarship</button>
-</div>
-<div class="panel"><h2>Saved scholarships</h2><div id="scholarshipList"></div></div>
+  <div class="panel">
+    <h2>Scholarship Tracker 💰</h2>
+    <div class="grid">
+      <div><label>Scholarship name</label><input id="schName"></div>
+      <div><label>Country</label><select id="schCountry"></select></div>
+      <div><label>Deadline</label><input id="schDeadline" type="date"></div>
+      <div><label>Official URL</label><input id="schLink" type="url"></div>
+    </div>
+    <button class="primary" onclick="addScholarship()">Save scholarship</button>
+  </div>
+  <div class="panel"><h2>Saved Scholarships</h2>
+    <div id="scholarshipList"></div></div>
+</section>
+
+<section id="tests" class="section">
+  <div class="panel">
+    <h2>Tests & Admission Requirements 📝</h2>
+    <p class="muted">Track the examinations you may need for each programme.</p>
+    <div class="notice">
+      Test requirements depend on the university, programme,
+      study level, language of instruction and applicant background.
+      Always verify requirements with the institution.
+    </div>
+    <div class="grid">
+      <div><label>Destination country</label>
+        <select id="testCountry"></select></div>
+      <div><label>University / programme</label>
+        <input id="testProgram" placeholder="e.g. Seoul National University, MSc"></div>
+    </div>
+    <button class="primary" onclick="openTestPlanner()">View test planner</button>
+  </div>
+  <div class="panel">
+    <h2>My Test Planner</h2>
+    <p id="testContext" class="muted"></p>
+    <div id="testList"></div>
+  </div>
 </section>
 
 <section id="sop" class="section">
-<div class="panel">
-<h2>Statement of Purpose Builder</h2>
-<p class="muted">Organize your own experiences into a first-person draft. Edit it carefully before using it in an application.</p>
-<label>Why do you want to study this subject?</label>
-<textarea id="sopMotivation" placeholder="Explain your genuine interest..."></textarea>
-<label>What academic or professional experience do you have?</label>
-<textarea id="sopExperience" placeholder="Mention real projects, education, work..."></textarea>
-<label>Why this programme or university?</label>
-<textarea id="sopChoice" placeholder="What makes it relevant to you?"></textarea>
-<label>What are your future goals?</label>
-<textarea id="sopGoals" placeholder="Describe your aspirations..."></textarea>
-<button class="primary" onclick="buildSOP()">Generate structured draft</button>
-<button class="secondary" onclick="saveSOP()">Save answers</button>
-<label>Editable draft</label>
-<textarea id="sopOutput" style="min-height:280px" placeholder="Your draft will appear here..."></textarea>
-<button class="secondary" onclick="copySOP()">Copy draft</button>
-<div class="notice">This tool structures information you provide. It does not invent achievements or guarantee that the draft meets a university's requirements.</div>
-</div>
+  <div class="panel">
+    <h2>SOP Builder ✍️</h2>
+    <p class="muted">Organize your own experiences into an editable draft.</p>
+    <label>Why do you want to study this subject?</label>
+    <textarea id="sopMotivation"></textarea>
+    <label>What academic or professional experience prepares you?</label>
+    <textarea id="sopExperience"></textarea>
+    <label>Why this university or programme?</label>
+    <textarea id="sopChoice"></textarea>
+    <label>What are your future goals?</label>
+    <textarea id="sopGoals"></textarea>
+    <button class="primary" onclick="buildSOP()">Generate structured draft</button>
+    <button class="secondary" onclick="saveSOP()">Save my answers</button>
+  </div>
+  <div class="panel">
+    <h2>My SOP Draft</h2>
+    <textarea id="sopOutput" style="min-height:260px"></textarea>
+    <button class="primary" onclick="saveSOP()">Save draft</button>
+    <button class="secondary" onclick="copySOP()">Copy draft</button>
+    <div class="notice">
+      This is a template-based draft, not an AI-generated SOP.
+      Review and personalize it before submitting.
+    </div>
+  </div>
 </section>
 
 <section id="applications" class="section">
-<div class="panel">
-<h2>Application Tracker</h2>
-<p class="muted">Track applications and important dates.</p>
-<div class="grid">
-<div><label>University or programme</label><input id="appName" placeholder="University and programme"></div>
-<div><label>Application deadline</label><input id="appDeadline" type="date"></div>
-<div><label>Status</label><select id="appStatus"><option>Researching</option><option>Preparing</option><option>Submitted</option><option>Decision received</option></select></div>
-</div>
-<button class="primary" onclick="addApplication()">Add application</button>
-</div>
-<div class="panel"><h2>My applications</h2><div id="applicationList"></div></div>
+  <div class="panel">
+    <h2>Application Tracker 📋</h2>
+    <div class="grid">
+      <div><label>University / application name</label>
+        <input id="appName"></div>
+      <div><label>Deadline</label>
+        <input id="appDeadline" type="date"></div>
+      <div><label>Status</label>
+        <select id="appStatus">
+          <option>Researching</option>
+          <option>Preparing</option>
+          <option>Submitted</option>
+          <option>Decision received</option>
+        </select></div>
+    </div>
+    <button class="primary" onclick="addApplication()">Add application</button>
+    <button class="secondary" onclick="showTab('tests')">
+      Manage admission tests
+    </button>
+  </div>
+  <div class="panel">
+    <h2>My Applications</h2>
+    <div id="applicationList"></div>
+  </div>
 </section>
 </main>
 
 <footer>
-AdmitMate 2.0 Beta · Educational planning tool · Always verify requirements with official institutions and relevant authorities.
+  AdmitMate v2.1 Beta · Your planning companion, not an admissions or visa guarantee.
 </footer>
+
+<button class="fab" id="chatToggle" aria-label="Open AdmitMate Assistant">💬</button>
+<div class="chat" id="chat" role="dialog" aria-label="AdmitMate Assistant">
+  <div class="chat-head">
+    <strong>🎓 AdmitMate Assistant</strong>
+    <button id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="messages" id="messages"></div>
+  <div class="chips">
+    <button data-question="How do I get started?">Get started</button>
+    <button data-question="Where are rankings?">Rankings</button>
+    <button data-question="How do I track tests?">Tests</button>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" placeholder="Ask how to use AdmitMate..." required>
+    <button type="submit">Send</button>
+  </form>
+</div>
 
 <script>
 "use strict";
 
+const STORAGE_KEY="admitmate_v2_workspace";
+const TEST_KEY="admitmate_v21_requirements";
+const el=id=>document.getElementById(id);
+
 const COUNTRIES=[
-{name:"United States",flag:"🇺🇸",url:"https://educationusa.state.gov/"},
-{name:"United Kingdom",flag:"🇬🇧",url:"https://study-uk.britishcouncil.org/"},
-{name:"Germany",flag:"🇩🇪",url:"https://www.daad.de/en/"},
-{name:"France",flag:"🇫🇷",url:"https://www.campusfrance.org/en"},
-{name:"Australia",flag:"🇦🇺",url:"https://www.studyaustralia.gov.au/"},
-{name:"New Zealand",flag:"🇳🇿",url:"https://www.studywithnewzealand.govt.nz/"},
-{name:"Japan",flag:"🇯🇵",url:"https://www.studyinjapan.go.jp/en/"},
-{name:"South Korea",flag:"🇰🇷",url:"https://www.studyinkorea.go.kr/"},
-{name:"China",flag:"🇨🇳",url:"https://www.campuschina.org/"},
-{name:"Canada",flag:"🇨🇦",url:"https://www.educanada.ca/"}
+ {name:"United States",flag:"🇺🇸",url:"https://educationusa.state.gov/"},
+ {name:"United Kingdom",flag:"🇬🇧",url:"https://study-uk.britishcouncil.org/"},
+ {name:"Germany",flag:"🇩🇪",url:"https://www.daad.de/en/"},
+ {name:"France",flag:"🇫🇷",url:"https://www.campusfrance.org/en"},
+ {name:"Australia",flag:"🇦🇺",url:"https://www.studyaustralia.gov.au/"},
+ {name:"New Zealand",flag:"🇳🇿",url:"https://www.studywithnewzealand.govt.nz/"},
+ {name:"Japan",flag:"🇯🇵",url:"https://www.studyinjapan.go.jp/en/"},
+ {name:"South Korea",flag:"🇰🇷",url:"https://www.studyinkorea.go.kr/"},
+ {name:"China",flag:"🇨🇳",url:"https://www.campuschina.org/"},
+ {name:"Canada",flag:"🇨🇦",url:"https://www.educanada.ca/"}
 ];
 
 const LANGUAGES=[
-["English","English"],["Hindi","हिन्दी"],
-["Tamil","தமிழ்"],["Telugu","తెలుగు"],
-["Malayalam","മലയാളം"],["Kannada","ಕನ್ನಡ"],
-["Bengali","বাংলা"],["Marathi","मराठी"],
-["Gujarati","ગુજરાતી"],["Punjabi","ਪੰਜਾਬੀ"],
-["Odia","ଓଡ଼ିଆ"],["Urdu","اردو"]
+ "English","Hindi","Tamil","Telugu","Malayalam","Kannada",
+ "Bengali","Marathi","Gujarati","Punjabi","Odia","Urdu"
 ];
 
 const DEFAULT_TASKS=[
-{title:"Complete your student profile",done:false},
-{title:"Select countries to compare",done:false},
-{title:"Research official university requirements",done:false},
-{title:"Create a university shortlist",done:false},
-{title:"Research scholarship opportunities",done:false},
-{title:"Review visa requirements on official websites",done:false}
+ {title:"Complete my student profile",done:false},
+ {title:"Explore study destinations",done:false},
+ {title:"Shortlist universities",done:false},
+ {title:"Research scholarships",done:false},
+ {title:"Check admission requirements",done:false},
+ {title:"Prepare my statement of purpose",done:false},
+ {title:"Plan application deadlines",done:false}
 ];
 
-const STORAGE_KEY="admitmate_v2_workspace";
 function initialState(){
-return {profile:{},countries:[],universities:[],scholarships:[],
-applications:[],tasks:structuredClone(DEFAULT_TASKS),sop:{}};
+ return {
+  profile:{},countries:[],universities:[],
+  scholarships:[],applications:[],
+  tasks:DEFAULT_TASKS.map(t=>({...t})),sop:{}
+ };
 }
-function load(){
-try{
-const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));
-if(!saved||typeof saved!=="object")return initialState();
-const base=initialState();
-for(const key of ["countries","universities","scholarships","applications","tasks"]){
-if(Array.isArray(saved[key]))base[key]=saved[key];
+
+function readJSON(key,fallback){
+ try{
+  const value=JSON.parse(localStorage.getItem(key));
+  return value&&typeof value==="object"?value:fallback;
+ }catch(e){return fallback;}
 }
-if(saved.profile&&typeof saved.profile==="object")base.profile=saved.profile;
-if(saved.sop&&typeof saved.sop==="object")base.sop=saved.sop;
-return base;
-}catch(e){return initialState();}
+
+function normalizeState(saved){
+ const defaults=initialState();
+ if(!saved||Array.isArray(saved))return defaults;
+ return {
+  profile:{...defaults.profile,...(saved.profile||{})},
+  countries:Array.isArray(saved.countries)?saved.countries:[],
+  universities:Array.isArray(saved.universities)?saved.universities:[],
+  scholarships:Array.isArray(saved.scholarships)?saved.scholarships:[],
+  applications:Array.isArray(saved.applications)?saved.applications:[],
+  tasks:Array.isArray(saved.tasks)?saved.tasks:defaults.tasks,
+  sop:{...defaults.sop,...(saved.sop||{})}
+ };
 }
-let state=load();
+
+let state=normalizeState(readJSON(STORAGE_KEY,initialState()));
+let testsSaved=readJSON(TEST_KEY,{});
+
 function persist(){
-try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
-catch(e){alert("Your browser could not save the workspace. Export your plan to keep a copy.");}
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+ catch(e){alert("Unable to save. Check browser storage settings.");}
 }
-function el(id){return document.getElementById(id);}
-function safe(s){
-return String(s??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-})[c]);
+
+function persistTests(){
+ try{localStorage.setItem(TEST_KEY,JSON.stringify(testsSaved));}
+ catch(e){alert("Unable to save test records.");}
 }
-function safeUrl(s){
-try{
-const u=new URL(s);
-return ["https:","http:"].includes(u.protocol)?u.href:"";
-}catch(e){return "";}
+
+function safe(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ })[c]);
 }
-function option(value,label){return `<option value="${safe(value)}">${safe(label)}</option>`;}
+
+function safeUrl(value){
+ try{
+  const u=new URL(value);
+  return ["https:","http:"].includes(u.protocol)?u.href:"";
+ }catch(e){return "";}
+}
+
 function linkHTML(url,label){
-const valid=safeUrl(url);
-return valid?`<a href="${safe(valid)}" target="_blank" rel="noopener noreferrer">${safe(label)}</a>`:"";
+ const href=safeUrl(url);
+ return href?`<a href="${safe(href)}" target="_blank"
+ rel="noopener noreferrer">${safe(label)} ↗</a>`:"";
 }
+
 function showTab(name){
-document.querySelectorAll(".section").forEach(x=>x.classList.toggle("active",x.id===name));
-document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab===name));
-window.scrollTo({top:0,behavior:"smooth"});
+ document.querySelectorAll(".section").forEach(s=>
+  s.classList.toggle("active",s.id===name)
+ );
+ document.querySelectorAll("#navigation button").forEach(b=>
+  b.classList.toggle("active",b.dataset.tab===name)
+ );
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+
+document.querySelectorAll("#navigation button").forEach(b=>{
+ b.addEventListener("click",()=>showTab(b.dataset.tab));
+});
+
+function saveProfile(){
+ const ids=[
+  "studentName","language","qualification","studyLevel",
+  "subject","budget","preferredUniversity","goal"
+ ];
+ ids.forEach(id=>state.profile[id]=el(id).value);
+ persist();
+ render();
+ el("profileStatus").textContent="Profile saved successfully!";
+}
+
+function toggleCountry(name){
+ const i=state.countries.indexOf(name);
+ if(i>=0)state.countries.splice(i,1);
+ else state.countries.push(name);
+ persist();render();
+}
+
+function renderCountries(){
+ el("countryGrid").innerHTML=COUNTRIES.map(c=>`
+  <div class="card country ${state.countries.includes(c.name)?"selected":""}"
+   data-country="${safe(c.name)}" role="button" tabindex="0">
+   <div class="flag">${c.flag}</div>
+   <h3>${safe(c.name)}</h3>
+   <p class="muted">${state.countries.includes(c.name)?
+     "✓ Selected":"Click to select"}</p>
+  </div>
+ `).join("");
+
+ el("countryGrid").querySelectorAll("[data-country]").forEach(card=>{
+  card.onclick=()=>toggleCountry(card.dataset.country);
+  card.onkeydown=e=>{
+   if(e.key==="Enter"||e.key===" "){
+    e.preventDefault();toggleCountry(card.dataset.country);
+   }
+  };
+ });
+
+ const selected=COUNTRIES.filter(c=>state.countries.includes(c.name));
+ el("comparison").innerHTML=selected.length?
+  `<div class="grid">${selected.map(c=>`
+   <div class="card">
+    <h3>${c.flag} ${safe(c.name)}</h3>
+    <p class="muted">Explore programmes, costs, scholarships,
+    teaching language and admissions requirements.</p>
+    ${linkHTML(c.url,"Official study resource")}
+   </div>`).join("")}</div>`:
+  '<div class="empty">Select countries to begin comparing.</div>';
+}
+
+function addTask(){
+ const title=el("newTask").value.trim();
+ if(!title)return;
+ state.tasks.push({title,done:false});
+ el("newTask").value="";
+ persist();render();
+}
+
+function toggleTask(i){
+ if(!state.tasks[i])return;
+ state.tasks[i].done=!state.tasks[i].done;
+ persist();render();
+}
+
+function deleteItem(type,i){
+ if(!Array.isArray(state[type]))return;
+ state[type].splice(i,1);
+ persist();render();
+}
+
+function addUniversity(){
+ const name=el("uniName").value.trim();
+ if(!name)return alert("Enter a university name.");
+ state.universities.push({
+  name,country:el("uniCountry").value,
+  program:el("uniProgram").value.trim(),
+  url:safeUrl(el("uniLink").value.trim())
+ });
+ ["uniName","uniProgram","uniLink"].forEach(id=>el(id).value="");
+ persist();render();
+}
+
+function addScholarship(){
+ const name=el("schName").value.trim();
+ if(!name)return alert("Enter a scholarship name.");
+ state.scholarships.push({
+  name,country:el("schCountry").value,
+  deadline:el("schDeadline").value,
+  url:safeUrl(el("schLink").value.trim())
+ });
+ ["schName","schDeadline","schLink"].forEach(id=>el(id).value="");
+ persist();render();
+}
+
+function addApplication(){
+ const name=el("appName").value.trim();
+ if(!name)return alert("Enter an application name.");
+ state.applications.push({
+  name,deadline:el("appDeadline").value,
+  status:el("appStatus").value
+ });
+ el("appName").value="";
+ el("appDeadline").value="";
+ persist();render();
+}
+
+function saveSOP(){
+ const ids=[
+  "sopMotivation","sopExperience","sopChoice",
+  "sopGoals","sopOutput"
+ ];
+ ids.forEach(id=>state.sop[id]=el(id).value);
+ persist();
+ alert("Your SOP draft has been saved.");
+}
+
+function buildSOP(){
+ const a=el("sopMotivation").value.trim();
+ const b=el("sopExperience").value.trim();
+ const c=el("sopChoice").value.trim();
+ const d=el("sopGoals").value.trim();
+ if(![a,b,c,d].some(Boolean)){
+  alert("Add some information first.");return;
+ }
+ el("sopOutput").value=[
+  a&&"My motivation for pursuing this field comes from: "+a,
+  b&&"My academic and professional background has prepared me through: "+b,
+  c&&"I am interested in this university and programme because: "+c,
+  d&&"Looking ahead, my goals include: "+d
+ ].filter(Boolean).join("\n\n");
+ state.sop.sopOutput=el("sopOutput").value;
+ persist();
+}
+
+async function copySOP(){
+ const text=el("sopOutput").value;
+ if(!text)return;
+ try{
+  await navigator.clipboard.writeText(text);
+  alert("Draft copied.");
+ }catch(e){
+  el("sopOutput").select();
+  alert("Copy the highlighted text.");
+ }
+}
+
+function renderCollection(id,type,format){
+ const items=state[type];
+ el(id).innerHTML=items.length?
+  `<div class="grid">${items.map((x,i)=>`
+   <div class="card">${format(x)}
+    <button class="danger" data-remove="${type}:${i}">Remove</button>
+   </div>`).join("")}</div>`:
+  '<div class="empty">Nothing saved yet.</div>';
+
+ el(id).querySelectorAll("[data-remove]").forEach(b=>{
+  b.onclick=()=>{
+   const [type,index]=b.dataset.remove.split(":");
+   deleteItem(type,Number(index));
+  };
+ });
+}
+
+function render(){
+ el("greeting").textContent=state.profile.studentName?
+  `Welcome back, ${state.profile.studentName}!`:
+  "Your future starts with a plan.";
+
+ el("countryCount").textContent=state.countries.length;
+ el("universityCount").textContent=state.universities.length;
+ el("scholarshipCount").textContent=state.scholarships.length;
+ el("taskCount").textContent=
+  state.tasks.filter(t=>t.done).length+"/"+state.tasks.length;
+
+ el("taskList").innerHTML=state.tasks.map((t,i)=>`
+  <div class="task ${t.done?"done":""}">
+   <input type="checkbox" ${t.done?"checked":""}
+    data-task="${i}" aria-label="Complete task">
+   <span>${safe(t.title)}</span>
+   <button class="secondary" style="margin-left:auto"
+    data-delete-task="${i}">Remove</button>
+  </div>
+ `).join("");
+
+ document.querySelectorAll("[data-task]").forEach(x=>{
+  x.onchange=()=>toggleTask(Number(x.dataset.task));
+ });
+ document.querySelectorAll("[data-delete-task]").forEach(x=>{
+  x.onclick=()=>deleteItem("tasks",Number(x.dataset.deleteTask));
+ });
+
+ el("journeySummary").textContent=[
+  state.profile.subject&&"Interest: "+state.profile.subject,
+  state.profile.goal&&"Goal: "+state.profile.goal,
+  state.countries.length&&"Exploring: "+state.countries.join(", ")
+ ].filter(Boolean).join(". ")||"Choose your first destination to get started.";
+
+ renderCountries();
+
+ renderCollection("universityList","universities",x=>`
+  <h3>${safe(x.name)}</h3>
+  <p>${safe(x.country)} · ${safe(x.program)}</p>
+  ${linkHTML(x.url,"Official programme link")}
+ `);
+
+ renderCollection("scholarshipList","scholarships",x=>`
+  <h3>${safe(x.name)}</h3>
+  <p>${safe(x.country)}</p>
+  <p class="muted">Deadline: ${safe(x.deadline||"Not recorded")}</p>
+  ${linkHTML(x.url,"Official scholarship link")}
+ `);
+
+ renderCollection("applicationList","applications",x=>`
+  <h3>${safe(x.name)}</h3>
+  <p><span class="pill">${safe(x.status)}</span></p>
+  <p class="muted">Deadline: ${safe(x.deadline||"Not recorded")}</p>
+ `);
+}
+
+const TESTS=[
+ ["IELTS","English proficiency"],
+ ["TOEFL","English proficiency"],
+ ["PTE","English proficiency"],
+ ["Duolingo","English proficiency"],
+ ["GRE","Graduate admissions"],
+ ["GMAT","Business school admissions"],
+ ["SAT","Undergraduate admissions"],
+ ["ACT","Undergraduate admissions"],
+ ["JLPT","Japanese proficiency"],
+ ["EJU","Japanese university admissions"],
+ ["TOPIK","Korean proficiency"],
+ ["HSK","Chinese proficiency"],
+ ["Other","Programme-specific requirement"]
+];
+
+let testCountry="United States";
+let testProgram="General research";
+
+function openTestPlanner(){
+ testCountry=el("testCountry").value;
+ testProgram=el("testProgram").value.trim()||"General research";
+ el("testContext").textContent=testCountry+" · "+testProgram;
+
+ el("testList").innerHTML=TESTS.map(([name,kind])=>{
+  const key=JSON.stringify([testCountry,testProgram,name]);
+  const data=testsSaved[key]||{};
+  return `
+   <div class="card" style="margin-bottom:12px">
+    <h3>${safe(name)}</h3>
+    <p class="muted">${safe(kind)}. Verify official programme requirements.</p>
+    <div class="grid">
+     <div><label>Requirement status</label>
+      <select data-key="${safe(key)}" data-field="status">
+       ${["Needs verification","Required","Optional",
+          "Waived","Not required"].map(v=>
+        `<option ${data.status===v?"selected":""}>${v}</option>`
+       ).join("")}
+      </select></div>
+     <div><label>Test date</label>
+      <input type="date" data-key="${safe(key)}"
+       data-field="date" value="${safe(data.date||"")}"></div>
+     <div><label>Score</label>
+      <input data-key="${safe(key)}" data-field="score"
+       value="${safe(data.score||"")}"></div>
+     <div><label>Progress</label>
+      <select data-key="${safe(key)}" data-field="progress">
+       ${["Not started","Preparing","Booked","Completed"].map(v=>
+        `<option ${data.progress===v?"selected":""}>${v}</option>`
+       ).join("")}
+      </select></div>
+    </div>
+    <label>Official source or notes</label>
+    <input data-key="${safe(key)}" data-field="notes"
+     value="${safe(data.notes||"")}"
+     placeholder="Official admissions URL or notes">
+   </div>
+  `;
+ }).join("");
+
+ el("testList").querySelectorAll("[data-key]").forEach(x=>{
+  x.addEventListener("change",()=>{
+   const key=x.dataset.key;
+   if(!testsSaved[key])testsSaved[key]={};
+   testsSaved[key][x.dataset.field]=x.value;
+   persistTests();
+  });
+ });
+}
+
+function exportPlan(){
+ const lines=[
+  "ADMITMATE STUDY ABROAD PLAN",
+  "Exported: "+new Date().toLocaleDateString(),
+  "",
+  "PROFILE",
+  ...Object.entries(state.profile).map(([k,v])=>k+": "+v),
+  "",
+  "DESTINATIONS",...state.countries,
+  "",
+  "UNIVERSITIES",
+  ...state.universities.map(x=>`${x.name} | ${x.country} | ${x.program}`),
+  "",
+  "SCHOLARSHIPS",
+  ...state.scholarships.map(x=>`${x.name} | ${x.deadline}`),
+  "",
+  "APPLICATIONS",
+  ...state.applications.map(x=>`${x.name} | ${x.status} | ${x.deadline}`),
+  "",
+  "TASKS",
+  ...state.tasks.map(x=>`${x.done?"[x]":"[ ]"} ${x.title}`),
+  "",
+  "TEST REQUIREMENTS",
+  ...Object.entries(testsSaved).map(([k,v])=>k+" | "+JSON.stringify(v)),
+  "",
+  "SOP DRAFT",state.sop.sopOutput||""
+ ];
+ const blob=new Blob([lines.join("\n")],{type:"text/plain"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download="AdmitMate-Study-Plan.txt";a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+/* ADMITMATE NAVIGATION ASSISTANT */
+const chat=el("chat");
+const messages=el("messages");
+
+function bubble(text,me=false){
+ const div=document.createElement("div");
+ div.className="bubble"+(me?" me":"");
+ div.textContent=text;
+ messages.appendChild(div);
+ messages.scrollTop=messages.scrollHeight;
+}
+
+function answer(question){
+ const q=question.toLowerCase();
+ if(/hello|^hi$|hey/.test(q))
+  return "Hello! 👋 Ask me about navigating AdmitMate.";
+ if(/start|begin|new here/.test(q))
+  return "Start in Profile. Then choose destinations in Countries. Your selections appear under My Plan.";
+ if(/rank|qs|times higher/.test(q))
+  return "Open Rankings to explore official QS and THE lists. Consider subject rankings, costs and programme fit too.";
+ if(/test|ielts|toefl|gre|gmat|jlpt|topik|hsk|exam/.test(q))
+  return "Open Tests, choose your country and enter a programme. Track requirements and verify them on the university website.";
+ if(/universit|shortlist|college|programme|program/.test(q))
+  return "Open Universities to save institutions, programmes and official links.";
+ if(/scholarship|funding/.test(q))
+  return "Open Scholarships to save funding opportunities and deadlines.";
+ if(/sop|statement of purpose|essay/.test(q))
+  return "Open SOP Builder to organize your experiences into an editable draft.";
+ if(/application|deadline|submit/.test(q))
+  return "Open Applications to track deadlines and application progress.";
+ if(/country|japan|korea|destination|compare/.test(q))
+  return "Open Countries to select destinations and find official study resources.";
+ if(/visa|immigration|pr|work permit/.test(q))
+  return "Visa rules can change. Always check official immigration websites. AdmitMate cannot guarantee outcomes.";
+ if(/language|translation|tamil|hindi/.test(q))
+  return "Set your language preference in Profile. Full translations are planned for a future version.";
+ if(/save|refresh|data|export/.test(q))
+  return "Your data is saved in this browser. Export your plan from My Plan for a backup.";
+ return "I'm a rule-based navigation helper, not a live AI adviser. Ask about Profile, Countries, Universities, Rankings, Scholarships, Tests, SOP Builder or Applications.";
+}
+
+function ask(q){
+ bubble(q,true);
+ bubble(answer(q));
+}
+
+el("chatToggle").onclick=()=>{
+ chat.classList.toggle("open");
+ if(chat.classList.contains("open"))el("chatInput").focus();
+};
+el("chatClose").onclick=()=>chat.classList.remove("open");
+
+el("chatForm").onsubmit=e=>{
+ e.preventDefault();
+ const q=el("chatInput").value.trim();
+ if(q){ask(q);el("chatInput").value="";}
+};
+
+document.querySelectorAll("[data-question]").forEach(b=>{
+ b.onclick=()=>ask(b.dataset.question);
+});
 
 function init(){
-el("language").innerHTML=LANGUAGES.map(([v,l])=>option(v,l)).join("");
-for(const id of ["uniCountry","schCountry"]){
-el(id).innerHTML=COUNTRIES.map(c=>option(c.name,c.flag+" "+c.name)).join("");
+ el("language").innerHTML=LANGUAGES.map(x=>
+  `<option value="${safe(x)}">${safe(x)}</option>`).join("");
+
+ for(const id of ["uniCountry","schCountry","testCountry"]){
+  el(id).innerHTML=COUNTRIES.map(c=>
+   `<option value="${safe(c.name)}">${c.flag} ${safe(c.name)}</option>`
+  ).join("");
+ }
+
+ for(const id of [
+  "studentName","language","qualification","studyLevel",
+  "subject","budget","preferredUniversity","goal"
+ ]){
+  if(state.profile[id]!==undefined)el(id).value=state.profile[id];
+ }
+
+ for(const id of [
+  "sopMotivation","sopExperience","sopChoice","sopGoals","sopOutput"
+ ]){
+  el(id).value=state.sop[id]||"";
+ }
+
+ render();
+ openTestPlanner();
+ bubble("Hi! 👋 I'm your AdmitMate Assistant. Ask me about rankings, tests, universities or your study plan.");
 }
-for(const id of ["studentName","language","qualification","studyLevel","subject","budget","preferredUniversity","goal"]){
-el(id).value=state.profile[id]??"";
-}
-for(const id of ["sopMotivation","sopExperience","sopChoice","sopGoals","sopOutput"]){
-el(id).value=state.sop[id]??"";
-}
-render();
-}
-function saveProfile(){
-const p={};
-for(const id of ["studentName","language","qualification","studyLevel","subject","budget","preferredUniversity","goal"]){
-p[id]=el(id).value.trim();
-}
-state.profile=p;
-persist();render();
-el("profileStatus").textContent="Profile saved in this browser.";
-}
-function renderCountries(){
-el("countryGrid").innerHTML=COUNTRIES.map(c=>`
-<div class="card country ${state.countries.includes(c.name)?"selected":""}"
-role="button" tabindex="0" data-country="${safe(c.name)}">
-<div class="flag">${c.flag}</div>
-<h3>${safe(c.name)}</h3>
-<p class="muted">${state.countries.includes(c.name)?"✓ Selected":"Select destination"}</p>
-${linkHTML(c.url,"Official study information")}
-</div>`).join("");
-document.querySelectorAll("[data-country]").forEach(card=>{
-const toggle=()=>toggleCountry(card.dataset.country);
-card.addEventListener("click",e=>{if(e.target.closest("a"))return;toggle();});
-card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});
-});
-const selected=COUNTRIES.filter(c=>state.countries.includes(c.name));
-el("comparison").innerHTML=selected.length?
-`<div class="grid">${selected.map(c=>`
-<div class="card">
-<h3>${c.flag} ${safe(c.name)}</h3>
-<p class="muted">Research tuition, living costs, teaching language, scholarships, visa rules and post-study opportunities.</p>
-${linkHTML(c.url,"Explore official study resources")}
-<p class="small muted">Costs and immigration rules are not automatically verified in this beta.</p>
-</div>`).join("")}</div>`:
-`<div class="empty">Select countries above to start comparing.</div>`;
-}
-function toggleCountry(name){
-state.countries=state.countries.includes(name)?
-state.countries.filter(x=>x!==name):[...state.countries,name];
-persist();render();
-}
-function addTask(){
-const title=el("newTask").value.trim();
-if(!title)return alert("Enter a task first.");
-state.tasks.push({title,done:false});
-el("newTask").value="";
-persist();render();
-}
-function toggleTask(i){
-state.tasks[i].done=!state.tasks[i].done;
-persist();render();
-}
-function deleteItem(type,i){
-if(!confirm("Remove this item?"))return;
-state[type].splice(i,1);
-persist();render();
-}
-function addUniversity(){
-const name=el("uniName").value.trim();
-if(!name)return alert("Enter a university name.");
-state.universities.push({
-name,country:el("uniCountry").value,
-program:el("uniProgram").value.trim(),
-url:safeUrl(el("uniLink").value.trim())
-});
-["uniName","uniProgram","uniLink"].forEach(id=>el(id).value="");
-persist();render();
-}
-function addScholarship(){
-const name=el("schName").value.trim();
-if(!name)return alert("Enter a scholarship name.");
-state.scholarships.push({
-name,country:el("schCountry").value,
-deadline:el("schDeadline").value,
-url:safeUrl(el("schLink").value.trim())
-});
-["schName","schDeadline","schLink"].forEach(id=>el(id).value="");
-persist();render();
-}
-function addApplication(){
-const name=el("appName").value.trim();
-if(!name)return alert("Enter an application name.");
-state.applications.push({
-name,deadline:el("appDeadline").value,status:el("appStatus").value
-});
-el("appName").value="";el("appDeadline").value="";
-persist();render();
-}
-function saveSOP(){
-const s={};
-for(const id of ["sopMotivation","sopExperience","sopChoice","sopGoals","sopOutput"]){
-s[id]=el(id).value.trim();
-}
-state.sop=s;persist();
-alert("Your SOP answers have been saved in this browser.");
-}
-function buildSOP(){
-const motivation=el("sopMotivation").value.trim();
-const experience=el("sopExperience").value.trim();
-const choice=el("sopChoice").value.trim();
-const goals=el("sopGoals").value.trim();
-if(![motivation,experience,choice,goals].some(Boolean)){
-return alert("Add some information about yourself first.");
-}
-const paragraphs=[
-motivation&&"My motivation for pursuing this field comes from the following: "+motivation,
-experience&&"My academic and professional background has helped prepare me for further study. "+experience,
-choice&&"I am interested in this programme and institution for these reasons: "+choice,
-goals&&"Looking ahead, my goals are as follows: "+goals
-].filter(Boolean);
-el("sopOutput").value=paragraphs.join("\n\n");
-saveSOP();
-}
-async function copySOP(){
-const value=el("sopOutput").value;
-if(!value)return alert("Generate or enter a draft first.");
-try{await navigator.clipboard.writeText(value);alert("Draft copied.");}
-catch(e){el("sopOutput").select();alert("Select and copy the highlighted draft.");}
-}
-function exportPlan(){
-const lines=[
-"ADMITMATE STUDY ABROAD PLAN",
-"Exported: "+new Date().toLocaleDateString(),
-"",
-"STUDENT PROFILE",
-...Object.entries(state.profile).map(([k,v])=>k+": "+v),
-"",
-"DESTINATIONS",...state.countries,
-"",
-"UNIVERSITIES",
-...state.universities.map(x=>`${x.name} | ${x.country} | ${x.program} | ${x.url}`),
-"",
-"SCHOLARSHIPS",
-...state.scholarships.map(x=>`${x.name} | ${x.country} | ${x.deadline} | ${x.url}`),
-"",
-"APPLICATIONS",
-...state.applications.map(x=>`${x.name} | ${x.status} | ${x.deadline}`),
-"",
-"TASKS",
-...state.tasks.map(x=>`${x.done?"[x]":"[ ]"} ${x.title}`),
-"",
-"SOP DRAFT",state.sop.sopOutput||"",
-"",
-"Verify all university, scholarship and immigration information independently."
-];
-const blob=new Blob([lines.join("\n")],{type:"text/plain;charset=utf-8"});
-const url=URL.createObjectURL(blob);
-const a=document.createElement("a");
-a.href=url;a.download="AdmitMate-Study-Plan.txt";a.click();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-function render(){
-const name=state.profile.studentName;
-el("greeting").textContent=name?`Welcome back, ${name}!`:"Your future starts with a plan.";
-el("countryCount").textContent=state.countries.length;
-el("universityCount").textContent=state.universities.length;
-el("scholarshipCount").textContent=state.scholarships.length;
-el("taskCount").textContent=state.tasks.filter(t=>t.done).length+"/"+state.tasks.length;
-el("taskList").innerHTML=state.tasks.map((t,i)=>`
-<div class="task ${t.done?"done":""}">
-<input type="checkbox" ${t.done?"checked":""} data-task="${i}" aria-label="Complete task">
-<span>${safe(t.title)}</span>
-<button class="secondary small" style="margin:0 0 0 auto" data-delete-task="${i}">Remove</button>
-</div>`).join("");
-document.querySelectorAll("[data-task]").forEach(x=>x.onchange=()=>toggleTask(Number(x.dataset.task)));
-document.querySelectorAll("[data-delete-task]").forEach(x=>x.onclick=()=>deleteItem("tasks",Number(x.dataset.deleteTask)));
-el("journeySummary").textContent=
-`${state.profile.subject?"Interest: "+state.profile.subject+". ":""}${state.profile.goal?"Goal: "+state.profile.goal+". ":""}${state.countries.length?"Exploring: "+state.countries.join(", ")+".":"Choose your first destination to get started."}`;
-renderCountries();
-renderCollection("universityList","universities",x=>`
-<h3>${safe(x.name)}</h3><p>${safe(x.country)} ${x.program?"· "+safe(x.program):""}</p>
-${linkHTML(x.url,"Official programme link")}`);
-renderCollection("scholarshipList","scholarships",x=>`
-<h3>${safe(x.name)}</h3><p>${safe(x.country)}</p>
-<p class="muted">Deadline: ${safe(x.deadline||"Not recorded")}</p>
-${linkHTML(x.url,"Official scholarship link")}`);
-renderCollection("applicationList","applications",x=>`
-<h3>${safe(x.name)}</h3><p><span class="pill">${safe(x.status)}</span></p>
-<p class="muted">Deadline: ${safe(x.deadline||"Not recorded")}</p>`);
-}
-function renderCollection(id,type,format){
-const items=state[type];
-el(id).innerHTML=items.length?`<div class="grid">${items.map((x,i)=>`
-<div class="card">${format(x)}
-<div><button class="danger" data-remove="${type}:${i}">Remove</button></div>
-</div>`).join("")}</div>`:
-`<div class="empty">Nothing saved yet. Start exploring!</div>`;
-el(id).querySelectorAll("[data-remove]").forEach(b=>{
-b.onclick=()=>{
-const [t,i]=b.dataset.remove.split(":");
-deleteItem(t,Number(i));
-};
-});
-}
+
 init();
 </script>
 </body>
